@@ -13,14 +13,14 @@ The type definitions under `nuklear.style` do not offer key auto-complete becaus
 ```jsonc
 // settings.json
 {
-	"Lua.workspace.library": [
+  "Lua.workspace.library": [
     // path to wherever this repo was cloned to
     "path/to/this/repo",
     // e.g. on Windows, "$USERPROFILE/Documents/LuaEnvironments/love-nuklear"
 
     // this library uses LÖVE as a dependency
     "${3rd}/love2d"
-	]
+  ]
 }
 ```
 
