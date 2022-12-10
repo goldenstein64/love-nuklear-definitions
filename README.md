@@ -14,7 +14,7 @@ The type definitions under `nuklear.style` do not offer key auto-complete becaus
 // settings.json
 {
 	"Lua.workspace.library": [
-		// path to wherever this repo was cloned to
+    // path to wherever this repo was cloned to
     "path/to/this/repo",
     // e.g. on Windows, "$USERPROFILE/Documents/LuaEnvironments/love-nuklear"
 
