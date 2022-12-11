@@ -1578,8 +1578,8 @@ function ui:style(style, body) end
 ---@field ['button']? nuklear.style.button
 ---@field ['border']? number
 ---@field ['rounding']? number
----@field ['content padding']? number
----@field ['button padding']? number
+---@field ['content padding']? { x: number, y: number }
+---@field ['button padding']? { x: number, y: number }
 ---@field ['spacing']? { x: number, y: number }
 
 ---@class nuklear.style.window
