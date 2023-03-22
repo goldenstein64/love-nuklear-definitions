@@ -1,11 +1,14 @@
 {
 	"Lua.workspace.library": [
-		"${3rd}/love2d"
+		"${3rd}/love2d/library"
 	],
 	"Lua.runtime.version": "LuaJIT",
 	"pixelbyte.love2d.debug": true,
 	"cSpell.words": [
 		"LÖVE",
 		"Nuklear"
-	]
+	],
+	"Lua.runtime.special": {
+		"love.filesystem.load": "loadfile"
+	}
 }
