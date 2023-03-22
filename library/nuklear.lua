@@ -2,8 +2,8 @@
 
 local nuklear = {}
 
----Windows and some window-like widgets can accept a number of window flags. 
----Either specify the window flags separately as function arguments or bundle 
+---Windows and some window-like widgets can accept a number of window flags.
+---Either specify the window flags separately as function arguments or bundle
 ---them all in a single table.
 ---@alias nuklear.flags
 ---| "border" # Draw a border around the window.
@@ -20,9 +20,9 @@ local nuklear = {}
 ---@class nuklear.ui
 local ui = {}
 
----Any function that accepts a LÖVE Image as an argument also accepts a LÖVE 
----Canvas. You can also specify a LÖVE Quad to use by passing a two-item array 
----`{Image, Quad}` or `{Canvas, Quad}`, where `Quad` specifies which part of 
+---Any function that accepts a LÖVE Image as an argument also accepts a LÖVE
+---Canvas. You can also specify a LÖVE Quad to use by passing a two-item array
+---`{Image, Quad}` or `{Canvas, Quad}`, where `Quad` specifies which part of
 ---the image to draw.
 ---@alias nuklear.image love.Image | love.Canvas | { [1]: love.Image, [2]: love.Quad } | { [1]: love.Canvas, [2]: love.Quad }
 
@@ -54,12 +54,12 @@ local ui = {}
 ---| 'bottom centered'
 ---| 'bottom right'
 
----Some styles and widgets accept a "color string" parameter. This is a string 
----of the format '#RRGGBB' or '#RRGGBBAA', where RR, GG, BB, and AA are each a 
+---Some styles and widgets accept a "color string" parameter. This is a string
+---of the format '#RRGGBB' or '#RRGGBBAA', where RR, GG, BB, and AA are each a
 ---byte in hexadecimal.
 ---@alias nuklear.color string
 
----Initialize a new instance of the library. This must be called before any of 
+---Initialize a new instance of the library. This must be called before any of
 ---the other functions.
 ---
 ---Events:
@@ -137,10 +137,12 @@ function ui:draw() end
 
 --#region # Update
 
----Begin a new frame for the UI. Call this once every `love.update`, before other UI calls.
+---Begin a new frame for the UI. Call this once every `love.update`, before
+---other UI calls.
 function ui:frameBegin() end
 
----End the current frame. Call this once every `love.update`, after other UI calls.
+---End the current frame. Call this once every `love.update`, after other UI
+---calls.
 function ui:frameEnd() end
 
 ---Equivalent to:
@@ -159,12 +161,12 @@ function ui:frame(body) end
 
 ---Rotate the UI by `angle` (in radians).
 ---
----All transform functions must be called after `ui:frameBegin` and before any 
+---All transform functions must be called after `ui:frameBegin` and before any
 ---non-transform functions.
 ---@param angle number
 function ui:rotate(angle) end
 
----Scale the UI by `scale` in both X and Y directions, or specify `scaleX` and 
+---Scale the UI by `scale` in both X and Y directions, or specify `scaleX` and
 ---`scaleY` separately.
 ---@param scaleX number
 ---@param scaleY number
@@ -185,10 +187,10 @@ function ui:translate(dx, dy) end
 
 --#region # Window
 
----Create or update a window with the given `name`. The `name` is a unique 
----identifier used internally to differentiate between windows. If unspecified, 
----the `name` defaults to the `title`. The `x`, `y`, `width`, and `height` 
----parameters describe the window's initial bounds. All additional arguments 
+---Create or update a window with the given `name`. The `name` is a unique
+---identifier used internally to differentiate between windows. If unspecified,
+---the `name` defaults to the `title`. The `x`, `y`, `width`, and `height`
+---parameters describe the window's initial bounds. All additional arguments
 ---are interpreted as window flags.
 ---@param name string
 ---@param title string
@@ -201,7 +203,7 @@ function ui:translate(dx, dy) end
 ---@overload fun(self: nuklear.ui, title: string, x: number, y: number, width: number, height: number, ...: nuklear.flags|nuklear.flags[]): (open: boolean)
 function ui:windowBegin(name, title, x, y, width, height, ...) end
 
----End a window. This must always be called after `ui:windowBegin`, regardless 
+---End a window. This must always be called after `ui:windowBegin`, regardless
 ---of whether or not the window is open.
 function ui:windowEnd() end
 
@@ -266,7 +268,7 @@ function ui:windowSetScroll(sx, sy) end
 ---@nodiscard
 function ui:windowIsCollapsed(name) end
 
----Return `true` if the given window was closed using `ui:windowClose`, and 
+---Return `true` if the given window was closed using `ui:windowClose`, and
 ---`false` otherwise.
 ---@param name string
 ---@return boolean closed
@@ -285,7 +287,7 @@ function ui:windowIsHidden(name) end
 ---@nodiscard
 function ui:windowIsActive(name) end
 
----Return `true` if the current window is hovered by the mouse, and `false` 
+---Return `true` if the current window is hovered by the mouse, and `false`
 ---otherwise.
 ---@return boolean hovered
 ---@nodiscard
@@ -351,15 +353,15 @@ function ui:windowHide(name) end
 
 ---Adopt a row layout for the proceeding widgets.
 ---
----If the `layout` is `'dynamic'`, the row height and columns must be 
----specified. If `cols` is a number, it specifies the number of equally sized 
----columns to divide the row into. If there is a `ratios` table instead, the 
----table is treated as an array of ratios from 0 to 1. Each ratio describes the 
+---If the `layout` is `'dynamic'`, the row height and columns must be
+---specified. If `cols` is a number, it specifies the number of equally sized
+---columns to divide the row into. If there is a `ratios` table instead, the
+---table is treated as an array of ratios from 0 to 1. Each ratio describes the
 ---width of the column with respect to the total row width.
 ---
----If the `layout` is `'static'`, there must either be `itemWidth` and `cols` 
----parameters describing the number of fixed-width columns to divide the row 
----into, or there must be a `sizes` table, which is an array of fixed widths 
+---If the `layout` is `'static'`, there must either be `itemWidth` and `cols`
+---parameters describing the number of fixed-width columns to divide the row
+---into, or there must be a `sizes` table, which is an array of fixed widths
 ---for the columns.
 ---
 ---Examples:
@@ -387,17 +389,17 @@ function ui:windowHide(name) end
 ---@diagnostic disable-next-line:duplicate-set-field
 function ui:layoutRow(layout, height, cols) end
 
----Adopt a row layout of the specified format type, height, and column count. 
----Before each proceeding widget, call `ui:layoutRowPush` to set the column 
+---Adopt a row layout of the specified format type, height, and column count.
+---Before each proceeding widget, call `ui:layoutRowPush` to set the column
 ---size. Don't forget to end the layout with `ui:layoutRowEnd`.
 ---@param layout 'dynamic' | 'static'
 ---@param height number
 ---@param cols number
 function ui:layoutRowBegin(layout, height, cols) end
 
----Specify the width of the next widget in a row layout started with 
----`ui:layoutRowBegin`. If the layout is dynamic, the width is specified as a 
----ratio of the total row width from 0 to 1. If the layout is static, the width 
+---Specify the width of the next widget in a row layout started with
+---`ui:layoutRowBegin`. If the layout is dynamic, the width is specified as a
+---ratio of the total row width from 0 to 1. If the layout is static, the width
 ---is specified as a number of pixels.
 ---@param ratio number
 ---@overload fun(self: nuklear.ui, size: number)
@@ -420,9 +422,9 @@ function ui:layoutRowEnd() end
 ---@diagnostic disable-next-line:duplicate-set-field
 function ui:layoutRow(layout, height, cols, body) end
 
----Start a template layout with the given `height`. Make all of your 
----`ui:layoutTemplatePush` and `ui:layoutTemplateEnd` calls before the widgets 
----to be laid out. Template layouts repeat row-by-row until another layout is 
+---Start a template layout with the given `height`. Make all of your
+---`ui:layoutTemplatePush` and `ui:layoutTemplateEnd` calls before the widgets
+---to be laid out. Template layouts repeat row-by-row until another layout is
 ---instituted.
 ---
 ---Example:
@@ -440,18 +442,18 @@ function ui:layoutRow(layout, height, cols, body) end
 ---@param height number
 function ui:layoutTemplateBegin(height) end
 
----Pushes a column onto a template layout. If the column is `'dynamic'`, it 
----grows to fit space and shrinks to zero width when there is no room. If the 
----column is `'variable'`, it grows to fit space and shrinks to a minimum of 
----`width` pixels when there is no room. If the column is `'static'`, it stays 
----at a constant `width` pixels. Remember to push all of your template columns 
+---Pushes a column onto a template layout. If the column is `'dynamic'`, it
+---grows to fit space and shrinks to zero width when there is no room. If the
+---column is `'variable'`, it grows to fit space and shrinks to a minimum of
+---`width` pixels when there is no room. If the column is `'static'`, it stays
+---at a constant `width` pixels. Remember to push all of your template columns
 ---and then call `ui:layoutTemplateEnd` before creating your widgets.
 ---@param layout 'variable' | 'static'
 ---@param width number
 ---@overload fun(self: nuklear.ui, layout: 'dynamic')
 function ui:layoutTemplatePush(layout, width) end
 
----End a template layout declaration. Remember to call this before creating 
+---End a template layout declaration. Remember to call this before creating
 ---your widgets.
 function ui:layoutTemplateEnd() end
 
@@ -466,17 +468,17 @@ function ui:layoutTemplateEnd() end
 ---@param body fun(ui: nuklear.ui)
 function ui:layoutTemplate(height, body) end
 
----Start a space layout with the given height and widget count. Call 
----`ui:layoutSpacePush` before each proceeding widget and `ui:layoutSpaceEnd` 
+---Start a space layout with the given height and widget count. Call
+---`ui:layoutSpacePush` before each proceeding widget and `ui:layoutSpaceEnd`
 ---after the layout is finished.
 ---@param layout 'dynamic' | 'static'
 ---@param height number
 ---@param widgetCount integer
 function ui:layoutSpaceBegin(layout, height, widgetCount) end
 
----Specify the bounds of a widget in a space layout. If the layout is dynamic, 
----the bounds are specified as ratios from 0 to 1 of the total width and height 
----of the space layout. If the layout is static, the bounds are pixel valued 
+---Specify the bounds of a widget in a space layout. If the layout is dynamic,
+---the bounds are specified as ratios from 0 to 1 of the total width and height
+---of the space layout. If the layout is static, the bounds are pixel valued
 ---offsets from the beginning of the layout.
 ---@param x number
 ---@param y number
@@ -586,7 +588,7 @@ function ui:groupSetScroll(title, sx, sy) end
 --#endregion
 --#region ## Trees
 
----Start a tree. The resulting item is either a `'node'` or a `'tab'`, with the 
+---Start a tree. The resulting item is either a `'node'` or a `'tab'`, with the
 ---idea being that nodes are a level below tabs.
 ---
 ---Remember to call `ui:treePop` if the item is open.
@@ -615,7 +617,8 @@ function ui:treePop() end
 ---@overload fun(self: nuklear.ui, item: 'node' | 'tab', title: string, image: nuklear.image, startingState: 'collapsed' | 'expanded', body: fun(ui: nuklear.ui))
 function ui:tree(item, title, body) end
 
----Same as `ui:treePush`, but the `startingState` argument sets the current state of the tree instead of just specifying the initial state.
+---Same as `ui:treePush`, but the `startingState` argument sets the current
+---state of the tree instead of just specifying the initial state.
 ---
 ---Be sure to call `ui:treeStatePop` if the tree is open.
 ---@param item 'node' | 'tab'
@@ -625,7 +628,8 @@ function ui:tree(item, title, body) end
 ---@overload fun(self: nuklear.ui, item: 'node' | 'tab', title: string, image: nuklear.image, state: 'collapsed' | 'expanded')
 function ui:treeStatePush(item, title) end
 
----Ends an open tree started with `ui:treeStatePush`. Call this at the end of every open treeState.
+---Ends an open tree started with `ui:treeStatePush`. Call this at the end of
+---every open treeState.
 function ui:treeStatePop() end
 
 ---Equivalent to:
@@ -646,7 +650,7 @@ function ui:treeState(item, title, body) end
 --#endregion
 --#region ## Popups
 
----Start a popup with the given size and flags. Bounds can be given as either 
+---Start a popup with the given size and flags. Bounds can be given as either
 ---dynamic ratios or static pixel counts.
 ---
 ---Call `ui:popupEnd` to end the popup if it is open.
@@ -696,7 +700,8 @@ function ui:popupSetScroll(sx, sy) end
 --#endregion
 --#region ## Context Menus
 
----Set up a context menu of the given size and trigger bounds. Also takes window flags.
+---Set up a context menu of the given size and trigger bounds. Also takes
+---window flags.
 ---@param width number
 ---@param height number
 ---@param triggerX number
@@ -707,7 +712,8 @@ function ui:popupSetScroll(sx, sy) end
 ---@return boolean open -- `true` if the context menu is open, and `false` otherwise.
 function ui:contextualBegin(width, height, triggerX, triggerY, triggerWidth, triggerHeight, ...) end
 
----Add an item to a context menu. Optionally specify a symbol type, image, and/or alignment.
+---Add an item to a context menu. Optionally specify a symbol type, image,
+---and/or alignment.
 ---
 ---Call `ui:contextualEnd` at the end of an open context menu.
 ---@param text string
@@ -719,7 +725,8 @@ function ui:contextualItem(text) end
 ---Close the current context menu.
 function ui:contextualClose() end
 
----End the current context menu. Be sure to call this at the end of an open context menu.
+---End the current context menu. Be sure to call this at the end of an open
+---context menu.
 function ui:contextualEnd() end
 
 ---Equivalent to:
@@ -754,7 +761,7 @@ function ui:tooltip(text) end
 ---@return boolean open -- `true` if the tooltip is open and `false` otherwise.
 function ui:tooltipBegin(width) end
 
----End a tooltip previously started with `ui:tooltipBegin`. Call this at the 
+---End a tooltip previously started with `ui:tooltipBegin`. Call this at the
 ---end of every open tooltip.
 function ui:tooltipEnd() end
 
@@ -773,11 +780,11 @@ function ui:tooltip(width, body) end
 --#endregion
 --#region ## Menus
 
----Start a menu bar. Menu bars stay at the top of a window even when scrolling. 
+---Start a menu bar. Menu bars stay at the top of a window even when scrolling.
 ---Call `ui:menubarEnd` to end one.
 function ui:menubarBegin() end
 
----Ends a menu bar. Always call this at the end of a menu bar started with 
+---Ends a menu bar. Always call this at the end of a menu bar started with
 ---`ui:menubarBegin`.
 function ui:menubarEnd() end
 
@@ -791,7 +798,7 @@ function ui:menubarEnd() end
 ---@param body fun(ui: nuklear.ui)
 function ui:menubar(body) end
 
----Start a menu of the given title and size. Optionally specify a symbol, 
+---Start a menu of the given title and size. Optionally specify a symbol,
 ---image, and/or alignment.
 ---
 ---Be sure to call `ui:menuEnd` when ending open menus.
@@ -803,7 +810,7 @@ function ui:menubar(body) end
 ---@overload fun(self: nuklear.ui, title: string, graphic: nuklear.symbol|nuklear.image, width: number, height: number, align: nuklear.alignment): (open: boolean)
 function ui:menuBegin(title, graphic, width, height) end
 
----Add a menu item to the current menu. Optionally specify a symbol, image, 
+---Add a menu item to the current menu. Optionally specify a symbol, image,
 ---and/or alignment.
 ---@param title string
 ---@return boolean activated -- `true` if the menu item is activated and `false` otherwise.
@@ -854,7 +861,8 @@ function ui:image(image) end
 ---@overload fun(self: nuklear.ui, title: nil, color: nuklear.color): (activated: boolean)
 function ui:button(title) end
 
----Sets whether a button is activated once per click (`'default'`) or every frame held down (`'repeater'`).
+---Sets whether a button is activated once per click (`'default'`) or every
+---frame held down (`'repeater'`).
 ---@param behavior 'default' | 'repeater'
 function ui:buttonSetBehavior(behavior) end
 
@@ -865,9 +873,9 @@ function ui:buttonPushBehavior(behavior) end
 ---Pop button behavior.
 function ui:buttonPopBehavior() end
 
----Add a checkbox with the given title. Either specify a boolean state 
----`active`, in which case the function returns the new state, or specify a 
----table with a boolean field called `value`, in which case the value is 
+---Add a checkbox with the given title. Either specify a boolean state
+---`active`, in which case the function returns the new state, or specify a
+---table with a boolean field called `value`, in which case the value is
 ---updated and the function returns `true` on toggled, and `false` otherwise.
 ---@param text string
 ---@param active boolean
@@ -875,13 +883,13 @@ function ui:buttonPopBehavior() end
 ---@overload fun(self: nuklear.ui, text: string, valueTable: { value: boolean }): (changed: boolean)
 function ui:checkbox(text, active) end
 
----Add a radio button with the given name and/or title. The title is displayed 
----to the user while the name is used to report which button is selected. By 
+---Add a radio button with the given name and/or title. The title is displayed
+---to the user while the name is used to report which button is selected. By
 ---default, the name is the same as the title.
 ---
----If called with a string `selection`, the function returns the new 
----`selection`, which should be the `name` of a radio button. If called with a 
----table that has a string field `value`, the value gets updated and the 
+---If called with a string `selection`, the function returns the new
+---`selection`, which should be the `name` of a radio button. If called with a
+---table that has a string field `value`, the value gets updated and the
 ---function returns `true` on selection change and `false` otherwise.
 ---@param text string
 ---@param selection string
@@ -893,8 +901,8 @@ function ui:radio(text, selection) end
 
 ---Add a selectable item with the given text and/or image and alignment.
 ---
----If given a boolean `selected`, return the new state of `selected`. If given 
----a table with a boolean field named `value` instead, the field gets updated and 
+---If given a boolean `selected`, return the new state of `selected`. If given
+---a table with a boolean field named `value` instead, the field gets updated and
 ---the function returns `true` on a change and `false` otherwise.
 ---@param text string
 ---@param selected boolean
@@ -908,8 +916,8 @@ function ui:selectable(text, selected) end
 
 ---Add a slider widget with the given range and step size.
 ---
----If given a number `current`, return the new `current` value. If given a 
----table with a number field named `value` instead, the field gets updated and 
+---If given a number `current`, return the new `current` value. If given a
+---table with a number field named `value` instead, the field gets updated and
 ---the function returns `true` on a change and `false` otherwise.
 ---@param min number
 ---@param current number
@@ -921,8 +929,8 @@ function ui:slider(min, current, max, step) end
 
 ---Add a progress widget, optionally making it modifiable.
 ---
----If given a number `current`, return the new `current` value. If given a 
----table with a number field named `value` instead, the field gets updated and 
+---If given a number `current`, return the new `current` value. If given a
+---table with a number field named `value` instead, the field gets updated and
 ---the function returns `true` on a change and `false` otherwise.
 ---@param current number
 ---@param max number
@@ -932,11 +940,11 @@ function ui:slider(min, current, max, step) end
 ---@overload fun(self: nuklear.ui, valueTable: { value: number }, max: number, modifiable: boolean): (changed: boolean)
 function ui:progress(current, max) end
 
----Add a color picker widget, optionally specifying format (default `'RGB'`, no 
+---Add a color picker widget, optionally specifying format (default `'RGB'`, no
 ---alpha).
 ---
----If given a `color` string, return the new `color`. If given a table with a 
----color string field named `value` instead, the field gets updated and the 
+---If given a `color` string, return the new `color`. If given a table with a
+---color string field named `value` instead, the field gets updated and the
 ---function returns `true` on change and `false` otherwise.
 ---@param color nuklear.color
 ---@return nuklear.color color
@@ -945,11 +953,11 @@ function ui:progress(current, max) end
 ---@overload fun(self: nuklear.ui, valueTable: { value: nuklear.color }, colorFormat: 'RGB'|'RGBA'): (changed: boolean)
 function ui:colorPicker(color) end
 
----Add a property widget, which is a named number variable. Specify the range, 
+---Add a property widget, which is a named number variable. Specify the range,
 ---step, and sensitivity.
 ---
----If given a number `current`, return the new `current`. If given a table with 
----a number field named `value` instead, the field gets updated and the 
+---If given a number `current`, return the new `current`. If given a table with
+---a number field named `value` instead, the field gets updated and the
 ---function returns `true` on change and `false` otherwise.
 ---@param name string
 ---@param min number
@@ -961,11 +969,11 @@ function ui:colorPicker(color) end
 ---@overload fun(self: nuklear.ui, name: string, min: number, valueTable: { value: number }, max: number, step: number, incPerPixel: number): (changed: boolean)
 function ui:property(name, min, current, max, step, incPerPixel) end
 
----Add an editable text field widget. The first argument defines the type of 
----editor to use: single line 'simple' and 'field', or multi-line 'box'. The 
----`valueTable` should be a table with a string field named `value`. The field 
+---Add an editable text field widget. The first argument defines the type of
+---editor to use: single line 'simple' and 'field', or multi-line 'box'. The
+---`valueTable` should be a table with a string field named `value`. The field
 ---gets updated and the function returns the edit state (one of 'commited' /
----'activated' / 'deactivated' / 'active' / 'inactive') followed by `true` if 
+---'activated' / 'deactivated' / 'active' / 'inactive') followed by `true` if
 ---the text changed or `false` if the text remained the same.
 ---@param editorType 'simple' | 'field' | 'box'
 ---@param valueTable { value: string }
@@ -979,13 +987,13 @@ function ui:editFocus() end
 ---Manually unfocus the following `ui:edit` widget.
 function ui:editUnfocus() end
 
----Add a drop-down combobox widget. `items` should be an array of strings. 
----`itemHeight` defaults to the widget height, `width` defaults to widget 
+---Add a drop-down combobox widget. `items` should be an array of strings.
+---`itemHeight` defaults to the widget height, `width` defaults to widget
 ---width, and `height` defaults to a sensible value based on `itemHeight`.
 ---
----If a number `index` is specified, then the function returns the new selected 
----`index`. If a table with a number field `value` is given instead, then the 
----field gets updated with the currently selected index and the function 
+---If a number `index` is specified, then the function returns the new selected
+---`index`. If a table with a number field `value` is given instead, then the
+---field gets updated with the currently selected index and the function
 ---returns `true` on change and `false` otherwise.
 ---@param index number
 ---@param items string[]
@@ -1000,8 +1008,8 @@ function ui:editUnfocus() end
 ---@diagnostic disable-next-line:duplicate-set-field
 function ui:combobox(index, items) end
 
----Start a combobox widget. This form gives complete control over the drop-down 
----list (it's treated like a new window). Color/symbol/image defaults to none, 
+---Start a combobox widget. This form gives complete control over the drop-down
+---list (it's treated like a new window). Color/symbol/image defaults to none,
 ---while width and height default to sensible values based on widget bounds.
 ---
 ---Remember to call `ui:comboboxEnd` if the combobox is open.
@@ -1012,7 +1020,7 @@ function ui:combobox(index, items) end
 ---@overload fun(self: nuklear.ui, text: string, graphic: nuklear.color|nuklear.symbol|nuklear.image, width: number, height: number): (open: boolean)
 function ui:comboboxBegin(text) end
 
----Add a combobox item, optionally specifying a symbol, image, and/or 
+---Add a combobox item, optionally specifying a symbol, image, and/or
 ---alignment.
 ---
 ---Return `true` if the item is activated, and `false` otherwise.
@@ -1068,29 +1076,29 @@ function ui:widgetHeight() end
 ---@return boolean hovered
 function ui:widgetIsHovered() end
 
----Return `true` if the given mouse button was pressed on the current widget 
----and has not yet been released, and `false` otherwise. `button` is one of 
+---Return `true` if the given mouse button was pressed on the current widget
+---and has not yet been released, and `false` otherwise. `button` is one of
 ---'left'/'right'/'middle' (defaults to 'left').
 ---@return boolean pressed
 ---@overload fun(self: nuklear.ui, button: 'left'|'right'|'middle'): (pressed: boolean)
 function ui:widgetHasMousePressed() end
 
----Return `true` if the given mouse button was released on the current widget 
----and has not since been pressed, and `false` otherwise. `button` is one of 
+---Return `true` if the given mouse button was released on the current widget
+---and has not since been pressed, and `false` otherwise. `button` is one of
 ---'left'/'right'/'middle' (defaults to 'left').
 ---@return boolean released
 ---@overload fun(self: nuklear.ui, button: 'left'|'right'|'middle'): (released: boolean)
 function ui:widgetHasMouseReleased() end
 
----Return `true` if the given mouse button was pressed on the current widget 
----this frame, and `false` otherwise. button is one of 'left'/'right'/'middle' 
+---Return `true` if the given mouse button was pressed on the current widget
+---this frame, and `false` otherwise. button is one of 'left'/'right'/'middle'
 ---(defaults to 'left').
 ---@return boolean pressed
 ---@overload fun(self: nuklear.ui, button: 'left'|'right'|'middle'): (pressed: boolean)
 function ui:widgetIsMousePressed() end
 
----Return `true` if the given mouse button was released on the current widget 
----this frame, and `false` otherwise. button is one of 'left'/'right'/'middle' 
+---Return `true` if the given mouse button was released on the current widget
+---this frame, and `false` otherwise. button is one of 'left'/'right'/'middle'
 ---(defaults to 'left').
 ---@return boolean released
 ---@overload fun(self: nuklear.ui, button: 'left'|'right'|'middle'): (released: boolean)
@@ -1135,14 +1143,16 @@ function ui:curve(x1, y1, ctrl1x, ctrl1y, ctrl2x, ctrl2y, x2, y2) end
 ---@param ... number
 function ui:polygon(mode, x1, y1, x2, y2, x3, y3, ...) end
 
----Draw a circle with the given draw mode, center screen coordinates, and radius.
+---Draw a circle with the given draw mode, center screen coordinates, and
+---radius.
 ---@param mode 'fill'|'line'
 ---@param x number
 ---@param y number
 ---@param r number
 function ui:circle(mode, x, y, r) end
 
----Draw an ellipse with the given draw mode, center screen coordinates, and radii.
+---Draw an ellipse with the given draw mode, center screen coordinates, and
+---radii.
 ---@param mode 'fill'|'line'
 ---@param x number
 ---@param y number
@@ -1150,7 +1160,8 @@ function ui:circle(mode, x, y, r) end
 ---@param ry number
 function ui:ellipse(mode, x, y, rx, ry) end
 
----Draw an arc with the given draw mode, screen coordinates, radius, and angles.
+---Draw an arc with the given draw mode, screen coordinates, radius, and
+---angles.
 ---@param mode 'fill' | 'line'
 ---@param x number
 ---@param y number
@@ -1159,7 +1170,8 @@ function ui:ellipse(mode, x, y, rx, ry) end
 ---@param endAngle number
 function ui:arc(mode, x, y, r, startAngle, endAngle) end
 
----Draw a gradient rectangle with the given screen coordinates, size, and corner colors.
+---Draw a gradient rectangle with the given screen coordinates, size, and
+---corner colors.
 ---@param x number
 ---@param y number
 ---@param width number
@@ -1198,7 +1210,7 @@ function ui:text(str, x, y, width, height) end
 
 --#region # Input
 
----Return `true` if the given screen bounds were hovered by the mouse in the 
+---Return `true` if the given screen bounds were hovered by the mouse in the
 ---previous frame, and `false` otherwise.
 ---@param x number
 ---@param y number
@@ -1207,7 +1219,8 @@ function ui:text(str, x, y, width, height) end
 ---@return boolean hovered
 function ui:inputWasHovered(x, y, width, height) end
 
----Return `true` if the given screen bounds are hovered by the mouse, and `false` otherwise.
+---Return `true` if the given screen bounds are hovered by the mouse, and
+---`false` otherwise.
 ---@param x number
 ---@param y number
 ---@param width number
@@ -1215,8 +1228,8 @@ function ui:inputWasHovered(x, y, width, height) end
 ---@return boolean hovered
 function ui:inputIsHovered(x, y, width, height) end
 
----Return `true` if the given mouse button was pressed in the given screen 
----bounds and has not yet been released, and `false` otherwise. `button` is one 
+---Return `true` if the given mouse button was pressed in the given screen
+---bounds and has not yet been released, and `false` otherwise. `button` is one
 ---of 'left'/'right'/'middle' (defaults to 'left').
 ---@param button 'left'|'right'|'middle'
 ---@param x number
@@ -1226,8 +1239,8 @@ function ui:inputIsHovered(x, y, width, height) end
 ---@return boolean pressed
 function ui:inputHasMousePressed(button, x, y, width, height) end
 
----Return `true` if the given mouse button was released in the given screen 
----bounds and has not since been pressed, and `false` otherwise. `button` is 
+---Return `true` if the given mouse button was released in the given screen
+---bounds and has not since been pressed, and `false` otherwise. `button` is
 ---one of 'left'/'right'/'middle' (defaults to 'left').
 ---@param button 'left'|'right'|'middle'
 ---@param x number
@@ -1237,8 +1250,8 @@ function ui:inputHasMousePressed(button, x, y, width, height) end
 ---@return boolean released
 function ui:inputHasMouseReleased(button, x, y, width, height) end
 
----Return `true` if the given mouse button was pressed in the given screen 
----bounds this frame, and `false` otherwise. `button` is one of 
+---Return `true` if the given mouse button was pressed in the given screen
+---bounds this frame, and `false` otherwise. `button` is one of
 ---'left'/'right'/'middle' (defaults to 'left').
 ---@param button 'left'|'right'|'middle'
 ---@param x number
@@ -1248,8 +1261,8 @@ function ui:inputHasMouseReleased(button, x, y, width, height) end
 ---@return boolean pressed
 function ui:inputIsMousePressed(button, x, y, width, height) end
 
----Return `true` if the given mouse button was released in the given screen 
----bounds this frame, and `false` otherwise. `button` is one of 
+---Return `true` if the given mouse button was released in the given screen
+---bounds this frame, and `false` otherwise. `button` is one of
 ---'left'/'right'/'middle' (defaults to 'left').
 ---@param button 'left'|'right'|'middle'
 ---@param x number
@@ -1264,7 +1277,7 @@ function ui:inputIsMouseReleased(button, x, y, width, height) end
 --#region # Styling
 --#region ## Colors
 
----Construct a color string from the given components (each from 0 to 255). 
+---Construct a color string from the given components (each from 0 to 255).
 ---Alpha (`a`) defaults to 255.
 ---@param r integer
 ---@param g integer
@@ -1273,7 +1286,7 @@ function ui:inputIsMouseReleased(button, x, y, width, height) end
 ---@return nuklear.color color
 function nuklear.colorRGBA(r, g, b, a) end
 
----Construct a color string from the given components (each from 0 to 255). 
+---Construct a color string from the given components (each from 0 to 255).
 ---Alpha (`a`) defaults to 255.
 ---@param h integer
 ---@param s integer
@@ -1297,7 +1310,8 @@ function ui:styleDefault() end
 
 ---Load a color table for quick color styling.
 ---
----Below is the default color table. Custom color tables must provide all of the same fields.
+---Below is the default color table. Custom color tables must provide all of
+---the same fields.
 ---
 ---```lua
 ---local colorTable = {
@@ -1628,12 +1642,5 @@ function ui:style(style, body) end
 
 --#endregion
 --#endregion
-
----@type nuklear.style
-local testStyle = {
-	text = {
-		buffer = { x = 1, y = 3 }
-	}
-}
 
 return nuklear
