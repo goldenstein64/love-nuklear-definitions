@@ -1,6 +1,6 @@
 # LÖVE Nuklear Definitions
 
-Definition files for [keharriso/love-nuklear](https://github.com/keharriso/love-nuklear) 2.6.1 to use with [sumneko/lua-language-server](https://github.com/sumneko/lua-language-server). The annotations have been manually re-written directly from the [docs](https://github.com/keharriso/love-nuklear/wiki/Documentation) to be parsable by the LSP.
+Definition files for [keharriso/love-nuklear](https://github.com/keharriso/love-nuklear) 2.6.1 to use with [LuaLS/lua-language-server](https://github.com/LuaLS/lua-language-server). The annotations have been manually re-written directly from the [docs](https://github.com/keharriso/love-nuklear/wiki/Documentation) to be parsable by the LSP.
 
 Some features are missing simply because I don't know how to lint them. The most pressing one is finding a stricter definition for the `nuklear.color` alias, it is just a string as of now.
 
