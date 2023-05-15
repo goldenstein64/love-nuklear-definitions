@@ -386,7 +386,6 @@ function ui:windowHide(name) end
 ---@overload fun(self: nuklear.ui, layout: 'dynamic', height: number, ratios: number[])
 ---@overload fun(self: nuklear.ui, layout: 'static', height: number, itemWidth: number, cols: number)
 ---@overload fun(self: nuklear.ui, layout: 'static', height: number, sizes: number[])
----@diagnostic disable-next-line:duplicate-set-field
 function ui:layoutRow(layout, height, cols) end
 
 ---Adopt a row layout of the specified format type, height, and column count.
@@ -419,7 +418,6 @@ function ui:layoutRowEnd() end
 ---@param height number
 ---@param cols number
 ---@param body fun(ui: nuklear.ui)
----@diagnostic disable-next-line:duplicate-set-field
 function ui:layoutRow(layout, height, cols, body) end
 
 ---Start a template layout with the given `height`. Make all of your
@@ -751,7 +749,6 @@ function ui:contextual(width, height, triggerX, triggerY, triggerWidth, triggerH
 
 ---Show a tooltip with the given text.
 ---@param text string
----@diagnostic disable-next-line:duplicate-set-field
 function ui:tooltip(text) end
 
 ---Start a tooltip with the given width.
@@ -775,7 +772,6 @@ function ui:tooltipEnd() end
 ---```
 ---@param width number
 ---@param body fun(ui: nuklear.ui)
----@diagnostic disable-next-line:duplicate-set-field
 function ui:tooltip(width, body) end
 --#endregion
 --#region ## Menus
@@ -851,7 +847,6 @@ function ui:label(text) end
 
 ---Show an image.
 ---@param image nuklear.image
----@diagnostic disable-next-line:duplicate-set-field
 function ui:image(image) end
 
 ---Add a button with a title and/or a color, symbol, or image.
@@ -1005,7 +1000,6 @@ function ui:editUnfocus() end
 ---@overload fun(self: nuklear.ui, valueTable: { value: number }, items: string[], itemHeight: number): (changed: boolean)
 ---@overload fun(self: nuklear.ui, valueTable: { value: number }, items: string[], itemHeight: number, width: number): (changed: boolean)
 ---@overload fun(self: nuklear.ui, valueTable: { value: number }, items: string[], itemHeight: number, width: number, height: number): (changed: boolean)
----@diagnostic disable-next-line:duplicate-set-field
 function ui:combobox(index, items) end
 
 ---Start a combobox widget. This form gives complete control over the drop-down
@@ -1049,7 +1043,6 @@ function ui:comboboxEnd() end
 ---@overload fun(self: nuklear.ui, text: string, graphic: nuklear.color|nuklear.symbol|nuklear.image, body: fun(ui: nuklear.ui))
 ---@overload fun(self: nuklear.ui, text: string, graphic: nuklear.color|nuklear.symbol|nuklear.image, width: number, body: fun(ui: nuklear.ui))
 ---@overload fun(self: nuklear.ui, text: string, graphic: nuklear.color|nuklear.symbol|nuklear.image, width: number, height: number, body: fun(ui: nuklear.ui))
----@diagnostic disable-next-line:duplicate-set-field
 function ui:combobox(text, body) end
 
 ---Return the bounds of the current widget.
@@ -1195,7 +1188,6 @@ function ui:scissor(x, y, width, height) end
 ---@param y number
 ---@param width number
 ---@param height number
----@diagnostic disable-next-line:duplicate-set-field
 function ui:image(img, x, y, width, height) end
 
 ---Draw the given string at the given screen bounds.
